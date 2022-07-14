@@ -16,6 +16,7 @@ public class Students {
 	private String name;
 	private String password;
 	private String course;
+	private String email;
 
 	public Students() {
 	}
@@ -52,5 +53,12 @@ public class Students {
 		this.course = course;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }
