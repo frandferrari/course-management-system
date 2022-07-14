@@ -3,6 +3,8 @@ package com.frandferrari.course_management_system.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +19,16 @@ import com.frandferrari.course_management_system.repositories.InstructorReposito
 @RequestMapping(value = "/instructor")
 public class InstructorController {
 
+private PasswordEncoder encoder;
+	
 	@Autowired
 	private InstructorRepository repository;
+	
+	public InstructorController(InstructorRepository repository) {
+		super();
+		this.repository = repository;
+		this.encoder = new BCryptPasswordEncoder();
+	}
 
 	@GetMapping
 	public List<Instructor> findAll() {
@@ -34,6 +44,8 @@ public class InstructorController {
 
 	@PostMapping
 	public Instructor insert(@RequestBody Instructor instructor) {
+		String encoder = this.encoder.encode(instructor.getPassword());
+		instructor.setPassword(encoder);
 		Instructor result = repository.save(instructor);
 		return result;
 	}
