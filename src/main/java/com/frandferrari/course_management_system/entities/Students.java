@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.frandferrari.course_management_system.repositories.StudentsRepository;
+
+
 @Entity
 @Table(name = "tb_students")
 public class Students {

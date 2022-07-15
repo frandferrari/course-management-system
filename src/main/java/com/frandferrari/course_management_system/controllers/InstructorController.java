@@ -16,7 +16,7 @@ import com.frandferrari.course_management_system.entities.Instructor;
 import com.frandferrari.course_management_system.repositories.InstructorRepository;
 
 @RestController
-@RequestMapping(value = "/instructor")
+@RequestMapping(value = "/instructors")
 public class InstructorController {
 
 private PasswordEncoder encoder;

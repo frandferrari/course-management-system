@@ -1,7 +1,5 @@
 package com.frandferrari.course_management_system.repositories;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.frandferrari.course_management_system.entities.Instructor;
