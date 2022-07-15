@@ -36,13 +36,13 @@ public class Administrator {
 		return result;
 	}
 
-	@GetMapping(value = "/instructor/{id}")
+	@GetMapping(value = "/instructors/{id}")
 	public Instructor findInstructorById(@PathVariable Long id) {
 		Instructor result = instructorRepository.findById(id).get();
 		return result;
 	}
 
-	@PostMapping(value = "/instructor")
+	@PostMapping(value = "/instructors")
 	public Instructor insert(@RequestBody Instructor instructor) {
 		String encoder = this.encoder.encode(instructor.getPassword());
 		instructor.setPassword(encoder);
