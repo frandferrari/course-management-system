@@ -7,17 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_students")
-public class Students {
+@Table(name = "tb_instructor")
+public class InstructorAdmin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String course;
+	private String password;
 	private String email;
 
-	public Students() {
+	public InstructorAdmin() {
 	}
 
 	public Long getId() {
@@ -36,12 +36,12 @@ public class Students {
 		this.name = name;
 	}
 
-	public String getCourse() {
-		return course;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setCourse(String course) {
-		this.course = course;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {

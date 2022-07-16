@@ -6,18 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.frandferrari.course_management_system.repositories.StudentsAdminRepository;
+
+
 @Entity
 @Table(name = "tb_students")
-public class Students {
+public class StudentsAdmin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String password;
 	private String course;
 	private String email;
 
-	public Students() {
+	public StudentsAdmin() {
 	}
 
 	public Long getId() {
@@ -34,6 +38,14 @@ public class Students {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getCourse() {
