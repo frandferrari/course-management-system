@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.frandferrari.course_management_system.entities.Instructor;
-import com.frandferrari.course_management_system.repositories.InstructorAdminRepository;
 import com.frandferrari.course_management_system.repositories.InstructorRepository;
 
 @RestController

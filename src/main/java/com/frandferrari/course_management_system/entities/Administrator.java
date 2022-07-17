@@ -1,23 +1,34 @@
 package com.frandferrari.course_management_system.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_instructor")
-public class InstructorAdmin {
+@Table(name = "tb_admin")
+public class Administrator {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String password;
-	private String email;
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "tab_administrator_roles", joinColumns = @JoinColumn(name = "administrator_id"))
+	@Column(name = "role_id")
+	private List<String> roles = new ArrayList<>();
 
-	public InstructorAdmin() {
+	public Administrator() {
 	}
 
 	public Long getId() {
@@ -44,12 +55,12 @@ public class InstructorAdmin {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<String> getRoles() {
+		return roles;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 
 }
