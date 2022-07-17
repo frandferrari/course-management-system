@@ -8,7 +8,7 @@ import com.frandferrari.course_management_system.entities.Instructor;
 
 public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 	
-	@Query("SELECT e FROM Instructor e JOIN FETCH e.roles WHERE e.name= (:name)")
-    public Instructor findByName(@Param("name") String name);
+	@Query("SELECT e FROM Instructor e JOIN FETCH e.roles WHERE e.username= (:username)")
+    public Instructor findByUsername(@Param("username") String username);
 
 }

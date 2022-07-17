@@ -27,8 +27,8 @@ public class Students {
 	private String email;
 	private String Password;
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "tab_students_roles", joinColumns = @JoinColumn(name = "students_id"))
-	@Column(name = "students_role_id")
+	@CollectionTable(name = "tab_students_roles", joinColumns = @JoinColumn(name = "administrator_id"))
+	@Column(name = "role_id")
 	private List<String> roles = new ArrayList<>();
 
 	public Students() {

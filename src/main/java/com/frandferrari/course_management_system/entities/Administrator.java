@@ -22,6 +22,7 @@ public class Administrator {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String username;
 	private String password;
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "tab_administrator_roles", joinColumns = @JoinColumn(name = "administrator_id"))
@@ -45,6 +46,14 @@ public class Administrator {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

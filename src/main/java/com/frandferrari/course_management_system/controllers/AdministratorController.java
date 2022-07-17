@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.frandferrari.course_management_system.entities.Administrator;
 import com.frandferrari.course_management_system.entities.Instructor;
 import com.frandferrari.course_management_system.entities.Students;
+import com.frandferrari.course_management_system.repositories.AdministratorRepository;
 import com.frandferrari.course_management_system.repositories.InstructorRepository;
 import com.frandferrari.course_management_system.repositories.StudentsRepository;
 
@@ -23,13 +25,34 @@ public class AdministratorController {
 	private PasswordEncoder encoder;
 	private InstructorRepository instructorRepository;
 	private StudentsRepository studentsRepository;
+	private AdministratorRepository administratorRepository;
 
-	
-
-	public AdministratorController(InstructorRepository instructorRepository, StudentsRepository studentsRepository) {
+	public AdministratorController(InstructorRepository instructorRepository, StudentsRepository studentsRepository,
+			AdministratorRepository administratorRepository) {
 		this.instructorRepository = instructorRepository;
 		this.studentsRepository = studentsRepository;
+		this.administratorRepository = administratorRepository;
 		this.encoder = new BCryptPasswordEncoder();
+	}
+
+	@GetMapping
+	public List<Administrator> findAllAdministrator() {
+		List<Administrator> result = administratorRepository.findAll();
+		return result;
+	}
+
+	@GetMapping(value = "/{id}")
+	public Administrator findAdministratorById(@PathVariable Long id) {
+		Administrator result = administratorRepository.findById(id).get();
+		return result;
+	}
+
+	@PostMapping
+	public Administrator insert(@RequestBody Administrator administrator) {
+		String encoder = this.encoder.encode(administrator.getPassword());
+		administrator.setPassword(encoder);
+		Administrator result = administratorRepository.save(administrator);
+		return result;
 	}
 
 	@GetMapping(value = "/instructors")

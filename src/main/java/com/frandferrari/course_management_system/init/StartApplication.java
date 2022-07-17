@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.frandferrari.course_management_system.entities.Administrator;
+import com.frandferrari.course_management_system.entities.Instructor;
+import com.frandferrari.course_management_system.entities.Students;
 import com.frandferrari.course_management_system.repositories.AdministratorRepository;
 import com.frandferrari.course_management_system.repositories.InstructorRepository;
 import com.frandferrari.course_management_system.repositories.StudentsRepository;
@@ -15,44 +17,44 @@ import com.frandferrari.course_management_system.repositories.StudentsRepository
 public class StartApplication implements CommandLineRunner {
 
 	@Autowired
-	private InstructorRepository instructorRepository;
+	private AdministratorRepository administratorRepository;
 	@Autowired
 	private StudentsRepository studentsRepository;
 	@Autowired
-	private AdministratorRepository administratorRepository;
+	private InstructorRepository instructorRepository;
 
 	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
-		Administrator administrator = administratorRepository.findByName("administrator");
+		Administrator administrator = administratorRepository.findByUsername("administrator");
 		if (administrator == null) {
 			administrator = new Administrator();
 			administrator.setName("ADMIN");
-			administrator.setName("admin");
+			administrator.setUsername("admin");
 			administrator.setPassword("admin");
 			administrator.getRoles().add("ADMIN");
 			administratorRepository.save(administrator);
 
 		}
 
-		administrator = administratorRepository.findByName("student");
-		if (administrator == null) {
-			administrator = new Administrator();
-			administrator.setName("STUDENT");
-			administrator.setName("student");
-			administrator.setPassword("student");
-			administrator.getRoles().add("STUDENT");
-			administratorRepository.save(administrator);
+		Students students = studentsRepository.findByUsername("student");
+		if (students == null) {
+			students = new Students();
+			students.setName("STUDENT");
+			students.setUsername("student");
+			students.setPassword("student");
+			students.getRoles().add("STUDENT");
+			studentsRepository.save(students);
 		}
 
-		administrator = administratorRepository.findByName("instructor");
-		if (administrator == null) {
-			administrator = new Administrator();
-			administrator.setName("INSTRUCTOR");
-			administrator.setName("instructor");
-			administrator.setPassword("instructor");
-			administrator.getRoles().add("INSTRUCTOR");
-			administratorRepository.save(administrator);
+		Instructor instructor = instructorRepository.findByUsername("instructor");
+		if (instructor == null) {
+			instructor = new Instructor();
+			instructor.setName("INSTRUCTOR");
+			instructor.setUsername("instructor");
+			instructor.setPassword("instructor");
+			instructor.getRoles().add("INSTRUCTOR");
+			instructorRepository.save(instructor);
 
 		}
 	}

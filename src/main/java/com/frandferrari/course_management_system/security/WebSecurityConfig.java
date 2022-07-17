@@ -36,8 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 			 "/admin/instructors/{id}",
                 			 "/admin/students/{id}",
                 			 "/admin/",
-                			 "/admin/instructors/",
-                			 "/admin/students/",
+                			 "/admin/instructors",
+                			 "/admin/students",
                 			 "/admin/instructors/{id}",
                 			 "/admin/students/{id}",
                 			 "/h2-console").hasAnyRole("ADMIN")
