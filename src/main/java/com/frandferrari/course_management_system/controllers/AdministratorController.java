@@ -49,8 +49,6 @@ public class AdministratorController {
 
 	@PostMapping
 	public Administrator insert(@RequestBody Administrator administrator) {
-		String encoder = this.encoder.encode(administrator.getPassword());
-		administrator.setPassword(encoder);
 		Administrator result = administratorRepository.save(administrator);
 		return result;
 	}

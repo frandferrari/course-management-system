@@ -8,7 +8,7 @@ import com.frandferrari.course_management_system.entities.Administrator;
 
 public interface AdministratorRepository extends JpaRepository<Administrator, Long> {
 	
-	@Query("SELECT e FROM Administrator e JOIN FETCH e.roles WHERE e.name= (:username)")
+	@Query("SELECT e FROM Administrator e JOIN FETCH e.roles WHERE e.username= (:username)")
     public Administrator findByUsername(@Param("username") String username);
 
 }
